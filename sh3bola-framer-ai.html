@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  
+  <style>
+    .owncode-page { width: 100%; min-height: 100vh; }
+    body { margin: 0; padding: 0; overflow-x: hidden; }
+  </style>
+</head>
+<body>
+  
+  
+    <script>
+      (function() {
+        const urlIdMap = {"/":"page-Lw","/kids-house":"page-L2tpZHMtaG91c2U","/tharaa-line":"page-L3RoYXJhYS1saW5l","/safwa":"page-L3NhZndh","/saqiat-qurtuba":"page-L3NhcWlhdC1xdXJ0dWJh","/moontij":"page-L21vb250aWo","/ksh":"page-L2tzaA","/corteksa":"page-L2NvcnRla3Nh","/luna-fleur":"page-L2x1bmEtZmxldXI","/haikal":"page-L2hhaWthbA"};
+        function navigate() {
+          const hashPath = (window.location.hash || '#/').replace('#', '') || '/';
+          const targetId = urlIdMap[hashPath] || urlIdMap['/'];
+
+          document.querySelectorAll('.owncode-page').forEach(p => {
+              p.style.display = 'none';
+          });
+          const target = document.getElementById(targetId);
+          if (target) {
+            target.style.display = 'block';
+            document.title = target.getAttribute('data-title') || document.title;
+            window.scrollTo(0, 0);
+          }
+        }
+        // Intercept clicks on hash links so <base href> doesn't redirect away
+        document.addEventListener('click', function(e) {
+          var link = e.target.closest ? e.target.closest('a[href^="#"]') : null;
+          if (link) {
+            e.preventDefault();
+            var hash = link.getAttribute('href');
+            if (hash && hash.startsWith('#')) {
+              window.location.hash = hash;
+            }
+          }
+        });
+        window.addEventListener('hashchange', navigate);
+        window.addEventListener('load', navigate);
+      })();
+    </script>
+</body>
+</html>
